@@ -5,7 +5,7 @@ _requires = [
     'ebs-linuxnode-gui-kivy-core>=2.0',
     # ebs Widgets
     'kivy_garden.ebs.core',
-    'kivy_garden.ebs.cefkivy',
+    'kivy_garden.ebs.cefkivy>=66.0.13',
 ]
 
 setuptools.setup(
