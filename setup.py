@@ -22,7 +22,8 @@ setuptools.setup(
 
     package_dir={'ebs.linuxnode.gui.kivy.netconfig': 'ebs/linuxnode/gui/kivy/netconfig'},
 
-    package_data={'ebs.linuxnode.gui.kivy.netconfig': ['images/settings.png']},
+    package_data={'ebs.linuxnode.gui.kivy.netconfig': ['images/settings.png',
+                                                       'images/close.png']},
 
     install_requires=_requires,
 
