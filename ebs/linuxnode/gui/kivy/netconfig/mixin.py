@@ -35,6 +35,7 @@ class NetconfigGuiMixin(BaseIoTNodeGui):
         super(NetconfigGuiMixin, self).install()
         _elements = {
             'netconfig_enable': ElementSpec('netconfig', 'enable', ItemSpec(str, read_only=False, fallback='no_internet')),
+            'netconfig_indicator_duration': ElementSpec('netconfig', 'indicator_duration', ItemSpec(int, fallback=0))
         }
         for name, spec in _elements.items():
             self.config.register_element(name, spec)
@@ -119,10 +120,16 @@ class NetconfigGuiMixin(BaseIoTNodeGui):
     @netconfig_enabled.setter
     def netconfig_enabled(self, value):
         if value:
+            if self.config.netconfig_indicator_duration:
+                self.reactor.callLater(self.config.netconfig_indicator_duration,
+                                       self._netconfig_disable)
             self._netconfig_button_show()
         else:
             self._netconfig_button_hide()
         self._netconfig_enabled = value
+
+    def _netconfig_disable(self):
+        self.netconfig_enabled = False
 
     def modapi_signal_internet_connected(self, value, prefix):
         super(NetconfigGuiMixin, self).modapi_signal_internet_connected(value, prefix)
