@@ -66,11 +66,11 @@ class NetconfigGuiMixin(BaseIoTNodeGui):
 
     def _netconfig_click_handler(self, *_):
         if not self.gui_netconfig_container.parent:
-            self.gui_primary_root.add_widget(self.gui_netconfig_container)
+            self.gui_primary_anchor.add_widget(self.gui_netconfig_container)
 
     def _netconfig_close_handler(self, *_):
         if self.gui_netconfig_container.parent:
-            self.gui_primary_root.remove_widget(self.gui_netconfig_container)
+            self.gui_primary_anchor.remove_widget(self.gui_netconfig_container)
             self._gui_netconfig_containter = None
             self._gui_netconfig_navbar = None
             self._netconfig_close_button = None
